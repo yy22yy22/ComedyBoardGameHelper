@@ -220,10 +220,18 @@ function giveNoticeBoard(){
     let result = 0;
     let last = playersList[playerNum-1].party;
     for(let i = 0; i < playerNum; i ++){
-        if (last == 1 && (playersList[i].party == last || playersList[i].name == "大兵")){
+        let now;
+        if (playersList[i].name == "大兵"){
+            now = 1;
+        } else if (playersList[i].name == "赵本山"){
+            now = 0;
+        } else {
+            now = playersList[i].party;
+        }
+        if (last == 1 && now == last){
             result ++;
         }
-        last = playersList[i].name == "大兵" ? 1 : playersList[i].party;
+        last = now;
     }
     return result;
 }
